@@ -1,0 +1,200 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Stays from './pages/Stays';
+import Host from './pages/Host';
+import SearchBar from "./components/SearchBar";
+import Dashboard from "./pages/dashboard/Dashboard";
+
+// ✅ Import Dashboard Sub-Pages
+import Profile from "./pages/dashboard/Profile";
+import Bookings from "./pages/dashboard/Bookings";
+import Listings from "./pages/dashboard/Listings";
+import Messages from "./pages/dashboard/Messages";
+import Settings from "./pages/dashboard/Settings";
+import Logout from "./pages/dashboard/Logout";
+
+const App = () => {
+  const [showDashboard, setShowDashboard] = useState(false);
+  const dashboardRef = useRef(null);
+
+  // Close dashboard on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dashboardRef.current && !dashboardRef.current.contains(event.target)) {
+        setShowDashboard(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const listings = [
+    {
+      id: 1,
+      title: "Cozy Cabin in the Woods",
+      location: "Manali, India",
+      price: "₹3,200/night",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/d0/a9/1a/renest-river-country.jpg?w=400&h=300&s=1"
+    },
+    {
+      id: 2,
+      title: "Modern Apartment Downtown",
+      location: "Mumbai, India",
+      price: "₹5,000/night",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/3c/93/b1/hotel-exterior.jpg?w=400&h=300&s=1"
+    },
+    {
+      id: 3,
+      title: "Beachside Bungalow",
+      location: "Goa, India",
+      price: "₹4,800/night",
+      image: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/594531993.jpg?k=cd349bfc0f8b766e48e5c624b38a7222fc83980d4649b3452ca94aec4531ed38&o=&hp=1/400x300"
+    },
+    {
+      id: 4,
+      title: "Luxury Villa with Pool",
+      location: "Jaipur, India",
+      price: "₹7,500/night",
+      image: "https://www.luxuryvacationvillas.co.uk/wp-content/uploads/2021/03/257257308-400x300.jpg"
+    },
+    {
+      id: 5,
+      title: "Mountain View Chalet",
+      location: "Shimla, India",
+      price: "₹6,200/night",
+      image: "https://www.hireacamp.com/api/external/image?name=uploads/71ad5613ad904f32abbe8ae2b6999fc8.jpg&size=3840x3840&q=75"
+    },
+    {
+      id: 6,
+      title: "Lakefront Cottage Retreat",
+      location: "Udaipur, India",
+      price: "₹5,800/night",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/8c/3a/0b/the-experience-resort.jpg?w=900&h=500&s=1"
+    },
+    {
+      id: 7,
+      title: "Heritage Haveli Stay",
+      location: "Jodhpur, India",
+      price: "₹4,500/night",
+      image: "https://media-cdn.tripadvisor.com/media/photo-s/09/62/d2/27/pal-haveli.jpg"
+    },
+    {
+      id: 8,
+      title: "Backwater Houseboat",
+      location: "Alleppey, India",
+      price: "₹6,800/night",
+      image: "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/apnrxeg2ev8hn1r1qxvc/Alleppey%20Backwater%20Cruise%20By%20Houseboat.jpg"
+    },
+    {
+      id: 9,
+      title: "Eco-Friendly Treehouse",
+      location: "Wayanad, India",
+      price: "₹3,900/night",
+      image: "https://3.imimg.com/data3/BQ/NV/MY-10533785/bamboo-tree-house.jpg"
+    },
+    {
+      id: 10,
+      title: "Skyline Penthouse Suite",
+      location: "Bengaluru, India",
+      price: "₹9,200/night",
+      image: "https://a0.muscache.com/pictures/miso/Hosting-876568809715364619/original/de9a9408-e05f-4cfb-9adf-a6f70d91be7b.jpeg"
+    },
+    {
+      id: 11,
+      title: "Colonial Bungalow Retreat",
+      location: "Pondicherry, India",
+      price: "₹4,300/night",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/90/17/34/gratitude-a-heritage.jpg?w=400&h=300&s=1"
+    },
+    {
+      id: 12,
+      title: "Himalayan Homestay",
+      location: "Leh, India",
+      price: "₹5,400/night",
+      image: "https://en-media.thebetterindia.com/uploads/2022/04/Himalayan-Farmstay-HIAL-1-1650284716.jpg"
+    }
+  ];
+
+  return (
+    <Router>
+      <div className="font-sans text-gray-800 min-h-screen bg-gray-50">
+        {/* ☰ DASHBOARD SIDEBAR */}
+        {showDashboard && (
+          <div ref={dashboardRef}>
+            <Dashboard />
+          </div>
+        )}
+
+        {/* Header */}
+        <header className="flex flex-col md:flex-row md:justify-between items-center px-6 py-4 shadow-md sticky top-0 bg-white z-40 gap-4">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold text-red-500">Airbnb</Link>
+
+          {/* Search Bar */}
+          <div className="w-full md:w-auto">
+            <SearchBar />
+          </div>
+
+          {/* Nav & Auth + Icon */}
+          <div className="flex items-center space-x-4">
+            <nav className="hidden md:flex space-x-4">
+              <Link to="/stays" className="hover:underline">Stays</Link>
+              <Link to="/host" className="hover:underline">Host</Link>
+              <Link to="/online-experiences" className="hover:underline">Services</Link>
+            </nav>
+            <Link to="/login" className="border px-3 py-1 rounded-full hover:bg-gray-100 transition">Login</Link>
+            <Link to="/signup" className="bg-red-500 text-white px-4 py-1 rounded-full hover:bg-red-600 transition">Sign Up</Link>
+
+            {/* ☰ ICON - Positioned to the far right */}
+            <button
+              className="text-3xl ml-2"
+              onClick={() => setShowDashboard(!showDashboard)}
+            >
+              ☰
+            </button>
+          </div>
+        </header>
+
+        {/* Routing */}
+        <Routes>
+          {/* Main Routes */}
+          <Route path="/" element={
+            <section className="px-6 py-8">
+              <h2 className="text-2xl font-semibold mb-6">Featured Listings</h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                {listings.map(listing => (
+                  <div key={listing.id} className="border rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                    <img src={listing.image} alt={listing.title} className="w-full h-48 object-cover" />
+                    <div className="p-4">
+                      <h3 className="text-lg font-semibold">{listing.title}</h3>
+                      <p className="text-sm text-gray-600">{listing.location}</p>
+                      <p className="mt-2 font-semibold">{listing.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/stays" element={<Stays />} />
+          <Route path="/host" element={<Host />} />
+          
+
+          {/* Dashboard Sub-Pages */}
+          <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/bookings" element={<Bookings />} />
+          <Route path="/dashboard/listings" element={<Listings />} />
+          <Route path="/dashboard/messages" element={<Messages />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/logout" element={<Logout />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default App;

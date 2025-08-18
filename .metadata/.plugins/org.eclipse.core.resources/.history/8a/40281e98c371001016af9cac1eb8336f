@@ -1,0 +1,16 @@
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+const Logout = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // You can also clear tokens/cookies here
+    alert("You have been logged out.");
+    navigate("/");
+  }, []);
+
+  return null;
+};
+
+export default Logout;
