@@ -118,7 +118,7 @@ Shows the properties listed by a host with options to edit or remove them.
 
  
 ## Logout Option:
-Provides a secure way for users to log out of their account.
+Provides a secure way for users to log out of their account and will redirect you back to the login page.
 <img width="489" height="496" alt="image" src="https://github.com/user-attachments/assets/5d0a9410-da08-47e4-abe7-39599db96417" />
 
  
