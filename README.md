@@ -1,18 +1,30 @@
 
 # Airbnb_Project
 
+✨ About This Project
+
+This project is a full-stack Airbnb Clone built to simulate the core features of the Airbnb platform. It provides users with the ability to explore properties, make bookings, and manage stays while also offering hosts and admins the tools to manage listings and user activities.
+
+## 🔹 Features
+* User Authentication – Secure signup/login functionality
+* Property Listings – Browse, search, and view property details with images and pricing
+* Booking System – Select dates, confirm reservations, and view past/current bookings
+* Host Dashboard – List properties, manage listings, and track bookings
+* Admin Panel – Manage users, bookings, and properties
+* Responsive Frontend – Clean and user-friendly interface built for web use
+
+## 🔹 Tech Stack
+* Frontend: React + Tailwind CSS
+* Backend: Spring Boot (Java)
+* Database: MySQL
+* Version Control: Git & GitHub
+
+  
 Ensure **Java 17** (or your project's Java version) and **Maven** are installed.
 A Java web application – **Spring Boot (JPA)** – using **Maven**.
  frameworks: JPA/Hibernate, Spring Boot, Spring Data JPA, Spring MVC
 **Database:** MySQL (jdbc\:mysql://localhost:3306/airbnb_app)
 
-## 🧰 Tech Stack
-
-* Language: Java
-* Build: Maven
-* Frameworks/Libraries: JPA/Hibernate, Spring Boot, Spring Data JPA, Spring MVC
-* View Layer: JSP/HTML
-* Packaging: JAR/WAR (depends on build)
 
 ## 🚀 How to Run
 
