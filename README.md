@@ -50,4 +50,7 @@ NOTE:- This is a demo project. To use it fully, please add hotel/property detail
        Only then will the listings appear, as no initial hotel data is preloaded in the database.
 
 
+<img width="940" height="427" alt="image" src="https://github.com/user-attachments/assets/0f024d04-544c-4525-8ff3-c9b3f84d3262" />
+
+
 
